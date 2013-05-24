@@ -10,8 +10,17 @@ Apache version 2.0 (for more details look at [LICENSE](LICENSE).
 
 ## Usage
 
+Run Avro's code generation against [weather.avsc](src/main/avro/weather.avsc) using Maven:
+
 ```bash
 $ mvn compile
+```
+
+Examine the code-generated source:
+
+```bash
+$ ls src/main/java/com/alexholmes/avro/Weather.java
+src/main/java/com/alexholmes/avro/Weather.java
 ```
 
 ## The Magic
