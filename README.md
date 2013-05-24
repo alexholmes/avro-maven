@@ -10,9 +10,16 @@ Apache version 2.0 (for more details look at [LICENSE](LICENSE).
 
 ## Usage
 
+Download the sources:
+
+``bash
+$ git clone git://github.com/alexholmes/avro-maven.git
+``
+
 Run Avro's code generation against [weather.avsc](src/main/avro/weather.avsc) using Maven:
 
 ```bash
+$ cd avro-maven/
 $ mvn compile
 ```
 
