@@ -1,0 +1,5 @@
+{"type": "record", "name": "com.alexholmes.avro.Test",
+ "fields": [
+     {"name": "test", "type": "string", "order": "ignore"}
+ ]
+}

@@ -46,7 +46,6 @@
           <target>${jdkLevel}</target>
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
-
         </configuration>
       </plugin>
       <plugin>
@@ -58,9 +57,20 @@
             <phase>generate-sources</phase>
             <goals>
               <goal>schema</goal>
-              <goal>protocol</goal>
-              <goal>idl-protocol</goal>
             </goals>
+            <configuration>
+              <sourceDirectory>${project.basedir}/src/main/myavro/</sourceDirectory>
+              <outputDirectory>${project.basedir}/src/main/altjava/</outputDirectory>
+              <testSourceDirectory>${project.basedir}/src/main/myavro/</testSourceDirectory>
+              <testOutputDirectory>${project.basedir}/src/test/altjava/</testOutputDirectory>
+              <fieldVisibility>PRIVATE</fieldVisibility>
+              <includes>
+                <include>**/*.avro</include>
+              </includes>
+              <testIncludes>
+                <testInclude>**/*.test</testInclude>
+            </testIncludes>
+            </configuration>
           </execution>
         </executions>
       </plugin>

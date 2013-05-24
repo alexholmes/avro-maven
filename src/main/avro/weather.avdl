@@ -1,0 +1,8 @@
+@version("1.0.5")
+@namespace("com.alexholmes.avro.weatherstation1")
+protocol WeatherStation {
+  record Station {
+    string name;
+  }
+  string getReading();
+} 

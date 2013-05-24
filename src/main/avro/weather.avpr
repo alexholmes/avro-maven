@@ -1,0 +1,22 @@
+{"namespace": "com.alexholmes.avro.weatherstation2",
+ "protocol": "Simple",
+ "doc": "Protocol used for testing.",
+ "version" : "1.6.2",
+ "types": [
+     {"name": "WeatherStation", "type": "record",
+      "fields": [
+          {"name": "name", "type": "string"}
+      ]
+     }
+ ],
+
+ "messages": {
+
+     "getReading": {
+         "doc": "Get a weather reading.",
+         "request": [],
+         "response": "string"
+     }
+ }
+
+}

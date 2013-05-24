@@ -1,8 +1,8 @@
 Avro Maven
 ==========
 
-A simple example of how to use the Avro Maven plugin to generate Avro sources given an Avro
-schema file.
+Some simple examples of how to use the Avro Maven plugin to generate Avro sources given an Avro
+schema, protocol or IDL file.
 
 ## License
 
@@ -16,18 +16,25 @@ Download the sources:
 $ git clone git://github.com/alexholmes/avro-maven.git
 ``
 
-Run Avro's code generation against [weather.avsc](src/main/avro/weather.avsc) using Maven:
+Run Avro's code generation against the Avro files contained in [src/main/avro](src/main/avro) (
+[weather.avsc](src/main/avro/weather.avsc),
+[weather.avpr](src/main/avro/weather.avpr) and
+[weather.avdl](src/main/avro/weather.avdl) ) using Maven:
 
 ```bash
 $ cd avro-maven/
-$ mvn compile
+$ mvn clean compile
 ```
 
-Examine the code-generated source:
+Examine the code-generated sources:
 
 ```bash
-$ ls src/main/java/com/alexholmes/avro/Weather.java
-src/main/java/com/alexholmes/avro/Weather.java
+$ find . -type f -name *.java src/main/java/com/alexholmes/avro/Weather.java
+./target/generated-sources/avro/com/alexholmes/avro/Weather.java
+./target/generated-sources/avro/com/alexholmes/avro/weatherstation1/Station.java
+./target/generated-sources/avro/com/alexholmes/avro/weatherstation1/WeatherStation.java
+./target/generated-sources/avro/com/alexholmes/avro/weatherstation2/Simple.java
+./target/generated-sources/avro/com/alexholmes/avro/weatherstation2/WeatherStation.java
 ```
 
 ## The Magic
@@ -38,21 +45,19 @@ The key is in adding the following plugin to your `pom.xml` file:
 
 ```
 <plugin>
-    <groupId>org.apache.avro</groupId>
-    <artifactId>avro-maven-plugin</artifactId>
-    <version>${avro.version}</version>
-    <executions>
-        <execution>
-            <phase>generate-sources</phase>
-            <goals>
-                <goal>schema</goal>
-            </goals>
-            <configuration>
-                <sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
-                <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
-            </configuration>
-        </execution>
-    </executions>
+  <groupId>org.apache.avro</groupId>
+  <artifactId>avro-maven-plugin</artifactId>
+  <version>${avro.version}</version>
+  <executions>
+    <execution>
+      <phase>generate-sources</phase>
+      <goals>
+        <goal>schema</goal>
+        <goal>protocol</goal>
+        <goal>idl-protocol</goal>
+      </goals>
+    </execution>
+  </executions>
 </plugin>
 ```
 
@@ -82,7 +87,14 @@ You'll also need to include Avro as a dependency:
         <artifactId>avro-compiler</artifactId>
         <version>${avro.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro-ipc</artifactId>
+      <version>${avro.version}</version>
+    </dependency>
 </dependencies>
 ```
 
-Done!
+If you want to customize the location of the source or destination files, as well as other settings, take a look at
+[pom-schema-fulldefs.xml](pom-schema-fulldefs.xml), as well as my blog post giving more details on the subject at
+[http://grepalex.com/2013/05/24/avro-maven/](http://grepalex.com/2013/05/24/avro-maven/).
