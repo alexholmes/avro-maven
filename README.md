@@ -1,7 +1,7 @@
 Avro Maven
 ==========
 
-A simple example of how to use the Avro Maven plugin to generage Avro sources given an Avro
+A simple example of how to use the Avro Maven plugin to generate Avro sources given an Avro
 schema file.
 
 ## License
@@ -16,7 +16,7 @@ $ mvn compile
 
 ## The Magic
 
-The complete Maven file can be viewed in [pom.xml][pom.xml].
+The complete Maven file can be viewed in [pom.xml](pom.xml).
 
 The key is in adding the following plugin to your `pom.xml` file:
 
