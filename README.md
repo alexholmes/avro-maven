@@ -95,6 +95,22 @@ You'll also need to include Avro as a dependency:
 </dependencies>
 ```
 
+## Customizing the plugin
+
 If you want to customize the location of the source or destination files, as well as other settings, take a look at
 [pom-schema-fulldefs.xml](pom-schema-fulldefs.xml), as well as my blog post giving more details on the subject at
 [http://grepalex.com/2013/05/24/avro-maven/](http://grepalex.com/2013/05/24/avro-maven/).
+
+To see the customized pom.xml in action, use the following command:
+
+```bash
+$ mvn clean compile -f pom-schema-fulldefs.xml
+```
+
+The generated output files can be seen with the `find` command:
+
+```bash
+$ find . -type f -name *.java
+./src/main/altjava/com/alexholmes/avro/Weather.java
+./src/test/altjava/com/alexholmes/avro/Test.java
+```
